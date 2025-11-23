@@ -657,31 +657,87 @@
         }
         
         /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-            }
-            
-            nav ul {
-                margin-top: 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .steps {
-                flex-direction: column;
-            }
-            
-            .step:not(:last-child):after {
-                display: none;
-            }
-            
-            .form-container {
-                padding: 2.5rem;
-            }
-        }
+		/* Header - CORREÇÃO PARA MOBILE */
+		@media (max-width: 768px) {
+		    .header-content {
+		        flex-direction: column;
+		        height: auto;
+		    }
+		    
+		    header {
+		        height: auto;
+		        padding: 1rem 0;
+		        overflow: hidden; /* Previne overflow horizontal */
+		    }
+		    
+		    nav {
+		        width: 100%;
+		        margin-top: 1rem;
+		        height: auto;
+		    }
+		    
+		    nav ul {
+		        flex-direction: column;
+		        width: 100%;
+		        height: auto;
+		        max-width: 100%; /* Garante que não ultrapasse a largura disponível */
+		    }
+		    
+		    nav ul li {
+		        margin: 0.5rem 0;
+		        width: 100%;
+		        text-align: center;
+		        height: auto;
+		    }
+		    
+		    nav ul li a {
+		        justify-content: center;
+		        padding: 10px 0;
+		        height: auto;
+		        width: 100%; /* Ocupa toda a largura disponível */
+		        display: block; /* Garante comportamento de bloco */
+		    }
+		    
+		    nav ul li a:after {
+		        bottom: 5px;
+		    }
+		    
+		    /* CORREÇÃO ESPECÍFICA PARA O BOTÃO NO MOBILE */
+		    nav ul li:last-child a.btn {
+		        display: inline-block;
+		        width: auto;
+		        padding: 12px 25px;
+		        margin-top: 0.5rem;
+		    }
+		    
+		    .hero h1 {
+		        font-size: 2.5rem;
+		    }
+		    
+		    .steps {
+		        flex-direction: column;
+		    }
+		    
+		    .step:not(:last-child):after {
+		        display: none;
+		    }
+		    
+		    .form-container {
+		        padding: 2.5rem;
+		    }
+		}
+
+	/* Correção adicional para telas muito pequenas */
+	@media (max-width: 480px) {
+	    .container {
+	        padding: 0 15px; /* Reduz padding em telas muito pequenas */
+	    }
+	    
+	    nav ul li:last-child a.btn {
+	        width: 100%; /* Botão ocupa largura total em telas muito pequenas */
+	        text-align: center;
+	    }
+	}
     </style>
 </head>
 <body>
