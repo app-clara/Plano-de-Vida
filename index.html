@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Vida Católico - Constância na Oração Diária</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #c53030;
+            --accent: #ecc94b;
+            --light: #f7fafc;
+            --dark: #2d3748;
+            --gray: #718096;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.9)), url('https://images.unsplash.com/photo-1544830287-5a5f1a0e8f9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #9c2626;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 0;
+            background-color: #f0f4f8;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 0 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .testimonial-text:before {
+            content: """;
+            font-size: 4rem;
+            color: var(--accent);
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            opacity: 0.3;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--gray);
+            margin-right: 1rem;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 5rem 0;
+            background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.9)), url('https://images.unsplash.com/photo-1544830287-5a5f1a0e8f9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Form Section */
+        .form-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-title h2 {
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        
+        .form-col {
+            flex: 1;
+            min-width: 250px;
+            padding: 0 10px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+        
+        .saints-select {
+            height: 120px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #4a5568;
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .form-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i>✝</i>
+                    <span>Plano de Vida Católico</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#features">Como Funciona</a></li>
+                        <li><a href="#benefits">Benefícios</a></li>
+                        <li><a href="#testimonials">Depoimentos</a></li>
+                        <li><a href="#form" class="btn">Teste Grátis</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Constância na Vida de Oração Católica</h1>
+            <p>Receba lembretes diários através de WhatsApp, Email ou SMS para fortalecer sua vida espiritual com o Plano de Vida Católico.</p>
+            <a href="#form" class="btn">Experimente 5 Dias Grátis</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Como o Plano de Vida Católico Funciona</h2>
+                <p>Personalize seus lembretes de oração de acordo com sua rotina e devoções pessoais</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Lembretes Personalizados</h3>
+                    <p>Escolha os horários que melhor se adequam à sua rotina para receber os lembretes de oração.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Múltiplos Canais</h3>
+                    <p>Receba as mensagens por WhatsApp, Email ou SMS, conforme sua preferência.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🙏</div>
+                    <h3>Variedade de Orações</h3>
+                    <p>Terço, Angelus, orações para dormir e devoções aos santos - personalize conforme sua espiritualidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Como Começar</h2>
+                <p>Em apenas 3 passos simples você estará fortalecendo sua vida de oração</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Cadastre-se</h3>
+                    <p>Preencha o formulário com suas informações básicas e preferências de oração.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Personalize</h3>
+                    <p>Escolha quais orações deseja receber e em quais horários.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Receba as Mensagens</h3>
+                    <p>Comece a receber lembretes diários no canal escolhido (WhatsApp, Email ou SMS).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>O Que Nossos Usuários Dizem</h2>
+                <p>Depoimentos de católicos que transformaram sua vida de oração</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>O Plano de Vida Católico mudou minha rotina espiritual. Antes eu esquecia de rezar o terço com frequência, agora recebo o lembrete no horário que escolhi e minha constância na oração aumentou muito.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Maria Silva</h4>
+                            <p>Assinante há 6 meses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Como mãe de família, é difícil encontrar tempo para a oração. Com os lembretes personalizados, consigo manter minha vida espiritual ativa mesmo nos dias mais corridos.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Ana Oliveira</h4>
+                            <p>Assinante há 3 meses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Adorei a possibilidade de escolher os santos que quero venerar. Recebo informações e orações específicas para cada um, o que enriqueceu muito minha devoção.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Carlos Santos</h4>
+                            <p>Assinante há 8 meses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Experimente Gratuitamente por 5 Dias</h2>
+            <p>Sem compromisso, cancele a qualquer momento durante o período de teste. Fortaleça sua vida de oração sem custo algum.</p>
+            <a href="#form" class="btn">Começar Agora</a>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="form">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-title">
+                    <h2>Cadastre-se para o Teste Grátis</h2>
+                    <p>Preencha o formulário abaixo para começar a receber lembretes de oração</p>
+                </div>
+                <form id="signup-form">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="nome">Nome Completo *</label>
+                                <input type="text" id="nome" name="nome" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="celular">Celular (com DDD) *</label>
+                                <input type="tel" id="celular" name="celular" class="form-control" placeholder="(11) 99999-9999" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h3>Preferências de Recebimento</h3>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="flg_disparo_email" name="flg_disparo_email" value="1">
+                            <label for="flg_disparo_email">Receber por Email</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="flg_disparo_sms" name="flg_disparo_sms" value="1">
+                            <label for="flg_disparo_sms">Receber por SMS</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="flg_disparo_wpp" name="flg_disparo_wpp" value="1">
+                            <label for="flg_disparo_wpp">Receber por WhatsApp</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h3>Orações e Devoções</h3>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="flg_disparo_terco" name="flg_disparo_terco" value="1">
+                            <label for="flg_disparo_terco">Desejo receber lembretes para o Terço</label>
+                        </div>
+                        <div class="form-group" id="terco-time" style="display: none;">
+                            <label for="horario_disparo_terco">Horário para o Terço</label>
+                            <input type="time" id="horario_disparo_terco" name="horario_disparo_terco" class="form-control">
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="flg_disparo_angelus" name="flg_disparo_angelus" value="1">
+                            <label for="flg_disparo_angelus">Desejo receber lembretes para o Angelus</label>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="flg_disparo_oracao_dormir" name="flg_disparo_oracao_dormir" value="1">
+                            <label for="flg_disparo_oracao_dormir">Desejo receber oração para dormir</label>
+                        </div>
+                        <div class="form-group" id="oracao-dormir-time" style="display: none;">
+                            <label for="horario_disparo_oracao_dormir">Horário para oração para dormir</label>
+                            <input type="time" id="horario_disparo_oracao_dormir" name="horario_disparo_oracao_dormir" class="form-control">
+                        </div>
+                        <div class="form-group" id="oracao-dormir-text" style="display: none;">
+                            <label for="oracao_dormir">Oração preferida para dormir</label>
+                            <select id="oracao_dormir" name="oracao_dormir" class="form-control">
+                                <option value="">Selecione uma opção</option>
+                                <option value="Oração de São Bento">Oração de São Bento</option>
+                                <option value="Oração do Anjo da Guarda">Oração do Anjo da Guarda</option>
+                                <option value="Ave Maria">Ave Maria</option>
+                                <option value="Outra">Outra (especificar no campo de observações)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="flg_disparo_santos" name="flg_disparo_santos" value="1">
+                            <label for="flg_disparo_santos">Desejo receber lembretes de devoção aos santos</label>
+                        </div>
+                        <div class="form-group" id="santos-time" style="display: none;">
+                            <label for="horario_disparo_santos">Horário para devoção aos santos</label>
+                            <input type="time" id="horario_disparo_santos" name="horario_disparo_santos" class="form-control">
+                        </div>
+                        <div class="form-group" id="santos-select" style="display: none;">
+                            <label for="vetor_santos">Santos de devoção (selecione um ou mais)</label>
+                            <select id="vetor_santos" name="vetor_santos" class="form-control saints-select" multiple>
+                                <option value="São José">São José</option>
+                                <option value="São Francisco de Assis">São Francisco de Assis</option>
+                                <option value="Santa Teresa de Calcutá">Santa Teresa de Calcutá</option>
+                                <option value="Santo Antônio">Santo Antônio</option>
+                                <option value="São João Paulo II">São João Paulo II</option>
+                                <option value="Santa Faustina">Santa Faustina</option>
+                                <option value="São Pio de Pietrelcina">São Pio de Pietrelcina</option>
+                                <option value="Santa Teresinha">Santa Teresinha</option>
+                                <option value="Santo Agostinho">Santo Agostinho</option>
+                                <option value="São Tomás de Aquino">São Tomás de Aquino</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn" style="width: 100%;">Começar Teste Grátis de 5 Dias</button>
+                    </div>
+                    <p style="text-align: center; font-size: 0.9rem; color: var(--gray);">Ao se cadastrar, você concorda com nossos Termos de Uso e Política de Privacidade.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Plano de Vida Católico</h3>
+                    <p>Uma ferramenta para ajudar católicos a manterem a constância na vida de oração através de lembretes personalizados.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#features">Como Funciona</a></li>
+                        <li><a href="#benefits">Benefícios</a></li>
+                        <li><a href="#testimonials">Depoimentos</a></li>
+                        <li><a href="#form">Teste Grátis</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li>Email: contato@planovidacatolico.com</li>
+                        <li>WhatsApp: (11) 99999-9999</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Plano de Vida Católico. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mostrar/ocultar campos condicionais
+        document.getElementById('flg_disparo_terco').addEventListener('change', function() {
+            document.getElementById('terco-time').style.display = this.checked ? 'block' : 'none';
+        });
+        
+        document.getElementById('flg_disparo_oracao_dormir').addEventListener('change', function() {
+            const show = this.checked;
+            document.getElementById('oracao-dormir-time').style.display = show ? 'block' : 'none';
+            document.getElementById('oracao-dormir-text').style.display = show ? 'block' : 'none';
+        });
+        
+        document.getElementById('flg_disparo_santos').addEventListener('change', function() {
+            const show = this.checked;
+            document.getElementById('santos-time').style.display = show ? 'block' : 'none';
+            document.getElementById('santos-select').style.display = show ? 'block' : 'none';
+        });
+        
+        // Form submission
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Coletar dados do formulário
+            const formData = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                celular: document.getElementById('celular').value,
+                flg_disparo_terco: document.getElementById('flg_disparo_terco').checked ? 1 : 0,
+                horario_disparo_terco: document.getElementById('horario_disparo_terco').value,
+                flg_disparo_angelus: document.getElementById('flg_disparo_angelus').checked ? 1 : 0,
+                flg_disparo_oracao_dormir: document.getElementById('flg_disparo_oracao_dormir').checked ? 1 : 0,
+                horario_disparo_oracao_dormir: document.getElementById('horario_disparo_oracao_dormir').value,
+                oracao_dormir: document.getElementById('oracao_dormir').value,
+                flg_disparo_santos: document.getElementById('flg_disparo_santos').checked ? 1 : 0,
+                horario_disparo_santos: document.getElementById('horario_disparo_santos').value,
+                vetor_santos: Array.from(document.getElementById('vetor_santos').selectedOptions).map(option => option.value),
+                flg_disparo_email: document.getElementById('flg_disparo_email').checked ? 1 : 0,
+                flg_disparo_sms: document.getElementById('flg_disparo_sms').checked ? 1 : 0,
+                flg_disparo_wpp: document.getElementById('flg_disparo_wpp').checked ? 1 : 0,
+                flg_usuario_ativo: 1,
+                timestamp_criacao: new Date().toISOString()
+            };
+            
+            // Aqui você implementaria a lógica para enviar os dados para o BigQuery
+            console.log('Dados do formulário:', formData);
+            
+            // Simulação de envio bem-sucedido
+            alert('Cadastro realizado com sucesso! Você receberá um email de confirmação para ativar seu teste gratuito de 5 dias.');
+            document.getElementById('signup-form').reset();
+            
+            // Redirecionar para página de agradecimento ou outra ação
+            // window.location.href = 'obrigado.html';
+        });
+    </script>
+</body>
+</html>
