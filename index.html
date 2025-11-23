@@ -83,9 +83,19 @@
             font-size: 1.8rem;
         }
         
+        nav {
+            height: 100%; /* Garante que a navegação ocupe toda a altura do header */
+            display: flex;
+            align-items: center; /* Centraliza verticalmente os itens do menu */
+        }
+        
         nav ul {
             display: flex;
             list-style: none;
+            height: 100%; /* Garante que a lista ocupe toda a altura disponível */
+            align-items: center; /* Centraliza verticalmente os itens da lista */
+            margin: 0; /* Remove margens padrão */
+            padding: 0; /* Remove paddings padrão */
         }
         
         nav ul li {
@@ -98,6 +108,7 @@
             font-weight: 500;
             transition: all 0.3s;
             position: relative;
+			margin-top:auto;
         }
         
         nav ul li a:after {
@@ -119,9 +130,9 @@
             width: 100%;
         }
         
-        /* Hero Section */
+        /* Hero Section https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Hoffman-ChristAndTheRichYoungRuler.jpg/1280px-Hoffman-ChristAndTheRichYoungRuler.jpg */
         .hero {
-            background: var(--dark-gradient), url('https://images.unsplash.com/photo-1544830287-5a5f1a0e8f9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: var(--dark-gradient), url('https://www.acn.org.br/wp-content/uploads/2018/02/3750cec8aaaa9dff79700a4982c35862.jpg');
             background-size: cover;
             background-position: center;
             background-blend-mode: overlay;
