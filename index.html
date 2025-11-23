@@ -6,15 +6,21 @@
     <title>Plano de Vida Católico - Constância na Oração Diária</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #1a365d;
-            --secondary: #c53030;
-            --accent: #ecc94b;
-            --light: #f7fafc;
-            --dark: #2d3748;
-            --gray: #718096;
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #d4af37;
+            --accent-dark: #b8941f;
+            --light: #f5f5f5;
+            --gray-light: #e5e5e5;
+            --gray: #a3a3a3;
+            --gray-dark: #404040;
+            --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+            --dark-gradient: linear-gradient(135deg, #0a0a0a 0%, #2d2d2d 100%);
+            --section-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
         }
         
         * {
@@ -24,14 +30,15 @@
         }
         
         body {
-            font-family: 'Open Sans', sans-serif;
-            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            color: var(--light);
             line-height: 1.6;
-            background-color: var(--light);
+            background-color: var(--primary);
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4 {
-            font-family: 'Merriweather', serif;
+            font-family: 'Cinzel', serif;
             font-weight: 700;
             margin-bottom: 1rem;
         }
@@ -45,13 +52,14 @@
         
         /* Header */
         header {
-            background-color: var(--primary);
+            background-color: rgba(10, 10, 10, 0.9);
             color: white;
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
         
         .header-content {
@@ -69,7 +77,10 @@
         
         .logo i {
             margin-right: 10px;
-            color: var(--accent);
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.8rem;
         }
         
         nav ul {
@@ -82,113 +93,197 @@
         }
         
         nav ul li a {
-            color: white;
+            color: var(--light);
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gold-gradient);
+            transition: width 0.3s;
         }
         
         nav ul li a:hover {
             color: var(--accent);
         }
         
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.9)), url('https://images.unsplash.com/photo-1544830287-5a5f1a0e8f9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: var(--dark-gradient), url('https://images.unsplash.com/photo-1544830287-5a5f1a0e8f9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
+            background-blend-mode: overlay;
             color: white;
-            padding: 5rem 0;
+            padding: 8rem 0 5rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 10%, rgba(10, 10, 10, 0.8) 70%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             max-width: 700px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 2.5rem;
+            color: var(--gray-light);
         }
         
         .btn {
             display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
+            background: var(--gold-gradient);
+            color: var(--primary);
+            padding: 15px 35px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
         }
         
         .btn:hover {
-            background-color: #9c2626;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+        
+        .btn:hover:before {
+            left: 100%;
         }
         
         /* Features Section */
         .features {
-            padding: 5rem 0;
-            background-color: white;
+            padding: 6rem 0;
+            background: var(--section-gradient);
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
         
         .section-title h2 {
-            font-size: 2rem;
-            color: var(--primary);
+            font-size: 2.5rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
         }
         
         .section-title p {
             color: var(--gray);
             max-width: 600px;
             margin: 0 auto;
+            font-size: 1.1rem;
         }
         
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
         }
         
         .feature-card {
-            background-color: var(--light);
-            border-radius: 8px;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.3);
         }
         
         .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .feature-card h3 {
-            color: var(--primary);
+            color: var(--light);
             margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
         }
         
         /* How It Works */
         .how-it-works {
-            padding: 5rem 0;
-            background-color: #f0f4f8;
+            padding: 6rem 0;
+            background: var(--primary);
         }
         
         .steps {
@@ -202,57 +297,88 @@
             flex: 1;
             min-width: 250px;
             text-align: center;
-            padding: 0 1rem;
+            padding: 0 1.5rem;
             margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -10px;
+            width: 50px;
+            height: 2px;
+            background: var(--gold-gradient);
         }
         
         .step-number {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary);
-            color: white;
+            width: 80px;
+            height: 80px;
+            background: var(--gold-gradient);
+            color: var(--primary);
             border-radius: 50%;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .step h3 {
+            color: var(--light);
             margin-bottom: 1rem;
+        }
+        
+        .step p {
+            color: var(--gray);
         }
         
         /* Testimonials */
         .testimonials {
-            padding: 5rem 0;
-            background-color: white;
+            padding: 6rem 0;
+            background: var(--section-gradient);
         }
         
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
         
         .testimonial-card {
-            background-color: var(--light);
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: rgba(212, 175, 55, 0.3);
         }
         
         .testimonial-text {
             font-style: italic;
             margin-bottom: 1.5rem;
             position: relative;
+            color: var(--gray-light);
         }
         
         .testimonial-text:before {
             content: """;
-            font-size: 4rem;
+            font-size: 5rem;
             color: var(--accent);
             position: absolute;
-            top: -20px;
+            top: -30px;
             left: -10px;
-            opacity: 0.3;
+            opacity: 0.2;
+            font-family: serif;
         }
         
         .testimonial-author {
@@ -261,15 +387,21 @@
         }
         
         .author-avatar {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background-color: var(--gray);
-            margin-right: 1rem;
+            background: var(--gold-gradient);
+            margin-right: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
         }
         
         .author-info h4 {
             margin-bottom: 0.2rem;
+            color: var(--light);
         }
         
         .author-info p {
@@ -279,66 +411,108 @@
         
         /* CTA Section */
         .cta {
-            padding: 5rem 0;
-            background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.9)), url('https://images.unsplash.com/photo-1544830287-5a5f1a0e8f9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            padding: 6rem 0;
+            background: var(--dark-gradient), url('https://images.unsplash.com/photo-1544830287-5a5f1a0e8f9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
+            background-blend-mode: overlay;
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 10%, rgba(10, 10, 10, 0.8) 70%);
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
         }
         
         .cta h2 {
-            font-size: 2.2rem;
+            font-size: 2.8rem;
             margin-bottom: 1.5rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .cta p {
             max-width: 700px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
+            margin: 0 auto 2.5rem;
+            font-size: 1.2rem;
+            color: var(--gray-light);
         }
         
         /* Form Section */
         .form-section {
-            padding: 5rem 0;
-            background-color: white;
+            padding: 6rem 0;
+            background: var(--primary);
         }
         
         .form-container {
             max-width: 800px;
             margin: 0 auto;
-            background-color: var(--light);
-            border-radius: 10px;
-            padding: 3rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: var(--section-gradient);
+            border-radius: 20px;
+            padding: 4rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
         }
         
         .form-title {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
         
         .form-title h2 {
-            color: var(--primary);
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.2rem;
+        }
+        
+        .form-title p {
+            color: var(--gray);
+            margin-top: 1rem;
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             font-weight: 600;
+            color: var(--light);
         }
         
         .form-control {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Open Sans', sans-serif;
+            padding: 15px 20px;
+            border: 1px solid var(--gray-dark);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
         }
         
         .form-row {
@@ -360,25 +534,36 @@
         }
         
         .checkbox-group input {
-            margin-right: 10px;
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent);
         }
         
         .saints-select {
             height: 120px;
         }
         
+        .form-section h3 {
+            color: var(--light);
+            margin: 2.5rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-dark);
+        }
+        
         /* Footer */
         footer {
-            background-color: var(--primary);
+            background: var(--section-gradient);
             color: white;
-            padding: 3rem 0 1.5rem;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
         }
         
         .footer-content {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
         
         .footer-column {
@@ -389,7 +574,13 @@
         
         .footer-column h3 {
             margin-bottom: 1.5rem;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            color: var(--light);
+        }
+        
+        .footer-column p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
         }
         
         .footer-column ul {
@@ -401,20 +592,44 @@
         }
         
         .footer-column ul li a {
-            color: #cbd5e0;
+            color: var(--gray);
             text-decoration: none;
             transition: color 0.3s;
         }
         
         .footer-column ul li a:hover {
-            color: white;
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--gold-gradient);
+            color: var(--primary);
+            transform: translateY(-3px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid #4a5568;
-            color: #cbd5e0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-dark);
+            color: var(--gray);
             font-size: 0.9rem;
         }
         
@@ -429,15 +644,19 @@
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .steps {
                 flex-direction: column;
             }
             
+            .step:not(:last-child):after {
+                display: none;
+            }
+            
             .form-container {
-                padding: 2rem;
+                padding: 2.5rem;
             }
         }
     </style>
@@ -448,7 +667,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <i>✝</i>
+                    <i class="fas cross">✝</i>
                     <span>Plano de Vida Católico</span>
                 </div>
                 <nav>
@@ -466,9 +685,11 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Constância na Vida de Oração Católica</h1>
-            <p>Receba lembretes diários através de WhatsApp, Email ou SMS para fortalecer sua vida espiritual com o Plano de Vida Católico.</p>
-            <a href="#form" class="btn">Experimente 5 Dias Grátis</a>
+            <div class="hero-content">
+                <h1>Constância na Vida de Oração Católica</h1>
+                <p>Receba lembretes diários personalizados através de WhatsApp, Email ou SMS para fortalecer sua vida espiritual com o Plano de Vida Católico.</p>
+                <a href="#form" class="btn">Experimente 5 Dias Grátis</a>
+            </div>
         </div>
     </section>
 
@@ -481,17 +702,17 @@
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
                     <h3>Lembretes Personalizados</h3>
                     <p>Escolha os horários que melhor se adequam à sua rotina para receber os lembretes de oração.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📱</div>
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Múltiplos Canais</h3>
                     <p>Receba as mensagens por WhatsApp, Email ou SMS, conforme sua preferência.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🙏</div>
+                    <div class="feature-icon"><i class="fas fa-pray"></i></div>
                     <h3>Variedade de Orações</h3>
                     <p>Terço, Angelus, orações para dormir e devoções aos santos - personalize conforme sua espiritualidade.</p>
                 </div>
@@ -539,7 +760,7 @@
                         <p>O Plano de Vida Católico mudou minha rotina espiritual. Antes eu esquecia de rezar o terço com frequência, agora recebo o lembrete no horário que escolhi e minha constância na oração aumentou muito.</p>
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar"></div>
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
                         <div class="author-info">
                             <h4>Maria Silva</h4>
                             <p>Assinante há 6 meses</p>
@@ -551,7 +772,7 @@
                         <p>Como mãe de família, é difícil encontrar tempo para a oração. Com os lembretes personalizados, consigo manter minha vida espiritual ativa mesmo nos dias mais corridos.</p>
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar"></div>
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
                         <div class="author-info">
                             <h4>Ana Oliveira</h4>
                             <p>Assinante há 3 meses</p>
@@ -563,7 +784,7 @@
                         <p>Adorei a possibilidade de escolher os santos que quero venerar. Recebo informações e orações específicas para cada um, o que enriqueceu muito minha devoção.</p>
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar"></div>
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
                         <div class="author-info">
                             <h4>Carlos Santos</h4>
                             <p>Assinante há 8 meses</p>
@@ -577,9 +798,11 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2>Experimente Gratuitamente por 5 Dias</h2>
-            <p>Sem compromisso, cancele a qualquer momento durante o período de teste. Fortaleça sua vida de oração sem custo algum.</p>
-            <a href="#form" class="btn">Começar Agora</a>
+            <div class="cta-content">
+                <h2>Experimente Gratuitamente por 5 Dias</h2>
+                <p>Sem compromisso, cancele a qualquer momento durante o período de teste. Fortaleça sua vida de oração sem custo algum.</p>
+                <a href="#form" class="btn">Começar Agora</a>
+            </div>
         </div>
     </section>
 
@@ -616,8 +839,8 @@
                         </div>
                     </div>
                     
+                    <h3>Preferências de Recebimento</h3>
                     <div class="form-group">
-                        <h3>Preferências de Recebimento</h3>
                         <div class="checkbox-group">
                             <input type="checkbox" id="flg_disparo_email" name="flg_disparo_email" value="1">
                             <label for="flg_disparo_email">Receber por Email</label>
@@ -632,65 +855,63 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <h3>Orações e Devoções</h3>
-                        
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="flg_disparo_terco" name="flg_disparo_terco" value="1">
-                            <label for="flg_disparo_terco">Desejo receber lembretes para o Terço</label>
-                        </div>
-                        <div class="form-group" id="terco-time" style="display: none;">
-                            <label for="horario_disparo_terco">Horário para o Terço</label>
-                            <input type="time" id="horario_disparo_terco" name="horario_disparo_terco" class="form-control">
-                        </div>
-                        
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="flg_disparo_angelus" name="flg_disparo_angelus" value="1">
-                            <label for="flg_disparo_angelus">Desejo receber lembretes para o Angelus</label>
-                        </div>
-                        
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="flg_disparo_oracao_dormir" name="flg_disparo_oracao_dormir" value="1">
-                            <label for="flg_disparo_oracao_dormir">Desejo receber oração para dormir</label>
-                        </div>
-                        <div class="form-group" id="oracao-dormir-time" style="display: none;">
-                            <label for="horario_disparo_oracao_dormir">Horário para oração para dormir</label>
-                            <input type="time" id="horario_disparo_oracao_dormir" name="horario_disparo_oracao_dormir" class="form-control">
-                        </div>
-                        <div class="form-group" id="oracao-dormir-text" style="display: none;">
-                            <label for="oracao_dormir">Oração preferida para dormir</label>
-                            <select id="oracao_dormir" name="oracao_dormir" class="form-control">
-                                <option value="">Selecione uma opção</option>
-                                <option value="Oração de São Bento">Oração de São Bento</option>
-                                <option value="Oração do Anjo da Guarda">Oração do Anjo da Guarda</option>
-                                <option value="Ave Maria">Ave Maria</option>
-                                <option value="Outra">Outra (especificar no campo de observações)</option>
-                            </select>
-                        </div>
-                        
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="flg_disparo_santos" name="flg_disparo_santos" value="1">
-                            <label for="flg_disparo_santos">Desejo receber lembretes de devoção aos santos</label>
-                        </div>
-                        <div class="form-group" id="santos-time" style="display: none;">
-                            <label for="horario_disparo_santos">Horário para devoção aos santos</label>
-                            <input type="time" id="horario_disparo_santos" name="horario_disparo_santos" class="form-control">
-                        </div>
-                        <div class="form-group" id="santos-select" style="display: none;">
-                            <label for="vetor_santos">Santos de devoção (selecione um ou mais)</label>
-                            <select id="vetor_santos" name="vetor_santos" class="form-control saints-select" multiple>
-                                <option value="São José">São José</option>
-                                <option value="São Francisco de Assis">São Francisco de Assis</option>
-                                <option value="Santa Teresa de Calcutá">Santa Teresa de Calcutá</option>
-                                <option value="Santo Antônio">Santo Antônio</option>
-                                <option value="São João Paulo II">São João Paulo II</option>
-                                <option value="Santa Faustina">Santa Faustina</option>
-                                <option value="São Pio de Pietrelcina">São Pio de Pietrelcina</option>
-                                <option value="Santa Teresinha">Santa Teresinha</option>
-                                <option value="Santo Agostinho">Santo Agostinho</option>
-                                <option value="São Tomás de Aquino">São Tomás de Aquino</option>
-                            </select>
-                        </div>
+                    <h3>Orações e Devoções</h3>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="flg_disparo_terco" name="flg_disparo_terco" value="1">
+                        <label for="flg_disparo_terco">Desejo receber lembretes para o Terço</label>
+                    </div>
+                    <div class="form-group" id="terco-time" style="display: none;">
+                        <label for="horario_disparo_terco">Horário para o Terço</label>
+                        <input type="time" id="horario_disparo_terco" name="horario_disparo_terco" class="form-control">
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="flg_disparo_angelus" name="flg_disparo_angelus" value="1">
+                        <label for="flg_disparo_angelus">Desejo receber lembretes para o Angelus</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="flg_disparo_oracao_dormir" name="flg_disparo_oracao_dormir" value="1">
+                        <label for="flg_disparo_oracao_dormir">Desejo receber oração para dormir</label>
+                    </div>
+                    <div class="form-group" id="oracao-dormir-time" style="display: none;">
+                        <label for="horario_disparo_oracao_dormir">Horário para oração para dormir</label>
+                        <input type="time" id="horario_disparo_oracao_dormir" name="horario_disparo_oracao_dormir" class="form-control">
+                    </div>
+                    <div class="form-group" id="oracao-dormir-text" style="display: none;">
+                        <label for="oracao_dormir">Oração preferida para dormir</label>
+                        <select id="oracao_dormir" name="oracao_dormir" class="form-control">
+                            <option value="">Selecione uma opção</option>
+                            <option value="Oração de São Bento">Oração de São Bento</option>
+                            <option value="Oração do Anjo da Guarda">Oração do Anjo da Guarda</option>
+                            <option value="Ave Maria">Ave Maria</option>
+                            <option value="Outra">Outra (especificar no campo de observações)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="flg_disparo_santos" name="flg_disparo_santos" value="1">
+                        <label for="flg_disparo_santos">Desejo receber lembretes de devoção aos santos</label>
+                    </div>
+                    <div class="form-group" id="santos-time" style="display: none;">
+                        <label for="horario_disparo_santos">Horário para devoção aos santos</label>
+                        <input type="time" id="horario_disparo_santos" name="horario_disparo_santos" class="form-control">
+                    </div>
+                    <div class="form-group" id="santos-select" style="display: none;">
+                        <label for="vetor_santos">Santos de devoção (selecione um ou mais)</label>
+                        <select id="vetor_santos" name="vetor_santos" class="form-control saints-select" multiple>
+                            <option value="São José">São José</option>
+                            <option value="São Francisco de Assis">São Francisco de Assis</option>
+                            <option value="Santa Teresa de Calcutá">Santa Teresa de Calcutá</option>
+                            <option value="Santo Antônio">Santo Antônio</option>
+                            <option value="São João Paulo II">São João Paulo II</option>
+                            <option value="Santa Faustina">Santa Faustina</option>
+                            <option value="São Pio de Pietrelcina">São Pio de Pietrelcina</option>
+                            <option value="Santa Teresinha">Santa Teresinha</option>
+                            <option value="Santo Agostinho">Santo Agostinho</option>
+                            <option value="São Tomás de Aquino">São Tomás de Aquino</option>
+                        </select>
                     </div>
                     
                     <div class="form-group">
@@ -709,6 +930,11 @@
                 <div class="footer-column">
                     <h3>Plano de Vida Católico</h3>
                     <p>Uma ferramenta para ajudar católicos a manterem a constância na vida de oração através de lembretes personalizados.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
                 </div>
                 <div class="footer-column">
                     <h3>Links Rápidos</h3>
@@ -722,8 +948,8 @@
                 <div class="footer-column">
                     <h3>Contato</h3>
                     <ul>
-                        <li>Email: contato@planovidacatolico.com</li>
-                        <li>WhatsApp: (11) 99999-9999</li>
+                        <li><i class="fas fa-envelope"></i> Email: contato@planovidacatolico.com</li>
+                        <li><i class="fas fa-phone"></i> WhatsApp: (11) 99999-9999</li>
                     </ul>
                 </div>
             </div>
