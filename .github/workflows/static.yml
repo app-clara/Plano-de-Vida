@@ -40,8 +40,6 @@ jobs:
         with:
           # Upload only specific files and folders needed for the website
           path: |
-            index.html
-            editar-registro.html
             assets/
           
       - name: Deploy to GitHub Pages
