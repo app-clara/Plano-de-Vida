@@ -35,12 +35,29 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
         
+      - name: Prepare deployment directory
+        run: |
+          # Create a clean deployment directory
+          mkdir -p ./deployment
+          
+          # Copy only the necessary files to deployment directory
+          cp index.html ./deployment/
+          cp editar-registro.html ./deployment/
+          
+          # Copy assets folder if it exists
+          if [ -d "assets" ]; then
+            cp -r assets ./deployment/
+          fi
+          
+          # Create a simple directory structure for GitHub Pages
+          echo "Deployment structure:"
+          find ./deployment -type f -name "*.html" -o -name "*.ico" -o -name "*.jpg" | sort
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload only specific files and folders needed for the website
-          path: |
-            assets/
+          # Upload only the prepared deployment directory
+          path: './deployment'
           
       - name: Deploy to GitHub Pages
         id: deployment
