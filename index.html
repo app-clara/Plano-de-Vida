@@ -95,35 +95,33 @@
             font-size: 1.8rem;
         }
         
-        nav {
-            height: 100%; /* Garante que a navegação ocupe toda a altura do header */
+        /* Desktop Navigation */
+        .desktop-nav {
             display: flex;
-            align-items: center; /* Centraliza verticalmente os itens do menu */
+            align-items: center;
         }
         
-        nav ul {
+        .desktop-nav ul {
             display: flex;
             list-style: none;
-            height: 100%; /* Garante que a lista ocupe toda a altura disponível */
-            align-items: center; /* Centraliza verticalmente os itens da lista */
-            margin: 0; /* Remove margens padrão */
-            padding: 0; /* Remove paddings padrão */
+            align-items: center;
+            margin: 0;
+            padding: 0;
         }
         
-        nav ul li {
+        .desktop-nav ul li {
             margin-left: 1.5rem;
         }
         
-        nav ul li a {
+        .desktop-nav ul li a {
             color: var(--light);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s;
             position: relative;
-			margin-top:auto;
         }
         
-        nav ul li a:after {
+        .desktop-nav ul li a:after {
             content: '';
             position: absolute;
             width: 0;
@@ -134,12 +132,92 @@
             transition: width 0.3s;
         }
         
-        nav ul li a:hover {
+        .desktop-nav ul li a:hover {
             color: var(--accent);
         }
         
-        nav ul li a:hover:after {
+        .desktop-nav ul li a:hover:after {
             width: 100%;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--section-gradient);
+            z-index: 1000;
+            transition: right 0.3s ease-in-out;
+            padding: 5rem 2rem 2rem;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav ul {
+            list-style: none;
+        }
+        
+        .mobile-nav ul li {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .mobile-nav ul li a:hover {
+            color: var(--accent);
+            padding-left: 10px;
+        }
+        
+        .mobile-nav .btn {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+			color: black;
+            width: 100%;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
         
         /* Hero Section https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Hoffman-ChristAndTheRichYoungRuler.jpg/1280px-Hoffman-ChristAndTheRichYoungRuler.jpg */
@@ -657,87 +735,48 @@
         }
         
         /* Responsive */
-		/* Header - CORREÇÃO PARA MOBILE */
-		@media (max-width: 768px) {
-		    .header-content {
-		        flex-direction: column;
-		        height: auto;
-		    }
-		    
-		    header {
-		        height: auto;
-		        padding: 1rem 0;
-		        overflow: hidden; /* Previne overflow horizontal */
-		    }
-		    
-		    nav {
-		        width: 100%;
-		        margin-top: 1rem;
-		        height: auto;
-		    }
-		    
-		    nav ul {
-		        flex-direction: column;
-		        width: 100%;
-		        height: auto;
-		        max-width: 100%; /* Garante que não ultrapasse a largura disponível */
-		    }
-		    
-		    nav ul li {
-		        margin: 0.5rem 0;
-		        width: 100%;
-		        text-align: center;
-		        height: auto;
-		    }
-		    
-		    nav ul li a {
-		        justify-content: center;
-		        padding: 10px 0;
-		        height: auto;
-		        width: 100%; /* Ocupa toda a largura disponível */
-		        display: block; /* Garante comportamento de bloco */
-		    }
-		    
-		    nav ul li a:after {
-		        bottom: 5px;
-		    }
-		    
-		    /* CORREÇÃO ESPECÍFICA PARA O BOTÃO NO MOBILE */
-		    nav ul li:last-child a.btn {
-		        display: inline-block;
-		        width: auto;
-		        padding: 12px 25px;
-		        margin-top: 0.5rem;
-		    }
-		    
-		    .hero h1 {
-		        font-size: 2.5rem;
-		    }
-		    
-		    .steps {
-		        flex-direction: column;
-		    }
-		    
-		    .step:not(:last-child):after {
-		        display: none;
-		    }
-		    
-		    .form-container {
-		        padding: 2.5rem;
-		    }
-		}
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .step:not(:last-child):after {
+                display: none;
+            }
+            
+            .form-container {
+                padding: 2.5rem;
+            }
+        }
 
-	/* Correção adicional para telas muito pequenas */
-	@media (max-width: 480px) {
-	    .container {
-	        padding: 0 15px; /* Reduz padding em telas muito pequenas */
-	    }
-	    
-	    nav ul li:last-child a.btn {
-	        width: 100%; /* Botão ocupa largura total em telas muito pequenas */
-	        text-align: center;
-	    }
-	}
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none;
+            }
+        }
+
+        /* Correção adicional para telas muito pequenas */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .mobile-nav {
+                width: 85%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -749,15 +788,34 @@
                     <i class="fas cross">✝</i>
                     <span>Plano de Vida Católico</span>
                 </div>
-                <nav>
+                
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav">
                     <ul>
                         <li><a href="#features">Como Funciona</a></li>
                         <li><a href="#testimonials">Depoimentos</a></li>
                         <li><a href="#form" class="btn">Teste Grátis</a></li>
                     </ul>
                 </nav>
+                
+                <!-- Mobile Navigation Toggle -->
+                <button class="mobile-nav-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
+        
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#features">Como Funciona</a></li>
+                <li><a href="#testimonials">Depoimentos</a></li>
+                <li><a href="#form" class="btn">Teste Grátis</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Overlay -->
+        <div class="overlay"></div>
     </header>
 
     <!-- Hero Section -->
@@ -1067,6 +1125,54 @@
 	</script>
 
     <script>
+        // Mobile navigation toggle
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const overlay = document.querySelector('.overlay');
+        
+        mobileNavToggle.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (mobileNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile nav when clicking overlay
+        overlay.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Reset icon
+            const icon = mobileNavToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        });
+        
+        // Close mobile nav when clicking a link
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset icon
+                const icon = mobileNavToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
         // Mostrar/ocultar campos condicionais
         document.getElementById('flg_disparo_terco').addEventListener('change', function() {
             document.getElementById('terco-time').style.display = this.checked ? 'block' : 'none';
