@@ -2,32 +2,27 @@
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://planodevidacatolico.com.br
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,26 +32,24 @@ jobs:
         
       - name: Prepare deployment directory
         run: |
-          # Create a clean deployment directory
           mkdir -p ./deployment
           
-          # Copy only the necessary files to deployment directory
           cp index.html ./deployment/
           cp editar-registro.html ./deployment/
           
-          # Copy assets folder if it exists
           if [ -d "assets" ]; then
             cp -r assets ./deployment/
           fi
+
+          # Custom domain configuration
+          echo "planodevidacatolico.com.br" > ./deployment/CNAME
           
-          # Create a simple directory structure for GitHub Pages
           echo "Deployment structure:"
-          find ./deployment -type f -name "*.html" -o -name "*.ico" -o -name "*.jpg" | sort
+          find ./deployment -type f | sort
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload only the prepared deployment directory
           path: './deployment'
           
       - name: Deploy to GitHub Pages
