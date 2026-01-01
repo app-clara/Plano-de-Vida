@@ -847,7 +847,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Constância na Vida de Oração Católica</h1>
-                <p>Receba lembretes diários personalizados através de WhatsApp, Email ou SMS para fortalecer sua vida espiritual com o Plano de Vida Católico.</p>
+                <p>Receba lembretes diários personalizados através de WhatsApp ou Email para fortalecer sua vida espiritual com o Plano de Vida Católico.</p>
                 <a href="#form" class="btn">Experimente Agora</a>
             </div>
         </div>
@@ -869,7 +869,7 @@
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Múltiplos Canais</h3>
-                    <p>Receba as mensagens por WhatsApp, Email ou SMS, conforme sua preferência.</p>
+                    <p>Receba as mensagens por WhatsApp ou Email, conforme sua preferência.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-pray"></i></div>
@@ -901,7 +901,7 @@
                 <div class="step">
                     <div class="step-number">3</div>
                     <h3>Receba as Mensagens</h3>
-                    <p>Comece a receber lembretes diários no canal escolhido (WhatsApp, Email ou SMS).</p>
+                    <p>Comece a receber lembretes diários no canal escolhido (WhatsApp ou Email).</p>
                 </div>
             </div>
         </div>
@@ -1229,7 +1229,7 @@
                 horario_disparo_santos: document.getElementById('horario_disparo_santos').value,
                 vetor_santos: Array.from(document.getElementById('vetor_santos').selectedOptions).map(option => option.value),
                 flg_disparo_email: document.getElementById('flg_disparo_email').checked ? 1 : 0,
-                flg_disparo_sms: document.getElementById('flg_disparo_sms').checked ? 1 : 0,
+                flg_disparo_sms: 0,
                 flg_disparo_wpp: document.getElementById('flg_disparo_wpp').checked ? 1 : 0,
                 flg_usuario_ativo: 1,
                 timestamp_criacao: new Date().toISOString()
