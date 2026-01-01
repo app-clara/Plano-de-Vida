@@ -182,7 +182,7 @@
 		.mobile-nav ul li a {
 			color: var(--light);
 			text-decoration: none;
-			font-size: 1.2rem;
+		 font-size: 1.2rem;
 			display: block;
 			padding: 0.5rem 0;
 			border-bottom: 1px solid rgba(212, 175, 55, 0.1);
@@ -362,7 +362,10 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            min-width: 300px;
+            min-height: 320px; /* Fixed height for consistency */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .feature-card:before {
@@ -404,13 +407,27 @@
             position: relative;
             overflow: hidden;
             margin: 0 auto;
+            width: 100%;
+            padding: 0 60px; /* Space for arrows */
         }
         
         .features-carousel-track {
             display: flex;
             transition: transform 0.5s ease-in-out;
             gap: 2.5rem;
-            padding: 10px 0;
+            padding: 20px 0;
+        }
+        
+        /* Carousel card specific styles */
+        .features-carousel-track .feature-card {
+            flex: 0 0 calc(100% - 40px);
+            min-width: calc(100% - 40px);
+            width: calc(100% - 40px);
+            margin: 0 20px;
+            box-sizing: border-box;
+            min-height: 320px; /* Match desktop height */
+            height: auto;
+            scroll-snap-align: center;
         }
         
         /* Side navigation arrows */
@@ -442,11 +459,11 @@
         }
         
         .carousel-nav-btn.prev {
-            left: 10px;
+            left: 0;
         }
         
         .carousel-nav-btn.next {
-            right: 10px;
+            right: 0;
         }
         
         /* How It Works */
@@ -525,7 +542,10 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(212, 175, 55, 0.1);
             transition: all 0.3s;
-            min-width: 320px;
+            min-height: 280px; /* Fixed height for consistency */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
         .testimonial-card:hover {
@@ -539,6 +559,7 @@
             margin-bottom: 1.5rem;
             position: relative;
             color: var(--gray-light);
+            flex-grow: 1;
         }
         
         .testimonial-text:before {
@@ -555,6 +576,7 @@
         .testimonial-author {
             display: flex;
             align-items: center;
+            margin-top: auto;
         }
         
         .author-avatar {
@@ -568,6 +590,7 @@
             justify-content: center;
             color: var(--primary);
             font-size: 1.5rem;
+            flex-shrink: 0;
         }
         
         .author-info h4 {
@@ -585,13 +608,27 @@
             position: relative;
             overflow: hidden;
             margin: 0 auto;
+            width: 100%;
+            padding: 0 60px; /* Space for arrows */
         }
         
         .testimonials-carousel-track {
             display: flex;
             transition: transform 0.5s ease-in-out;
             gap: 2.5rem;
-            padding: 10px 0;
+            padding: 20px 0;
+        }
+        
+        /* Carousel card specific styles */
+        .testimonials-carousel-track .testimonial-card {
+            flex: 0 0 calc(100% - 40px);
+            min-width: calc(100% - 40px);
+            width: calc(100% - 40px);
+            margin: 0 20px;
+            box-sizing: border-box;
+            min-height: 280px; /* Match desktop height */
+            height: auto;
+            scroll-snap-align: center;
         }
         
         /* CTA Section */
@@ -861,19 +898,32 @@
             .features-carousel-container,
             .testimonials-carousel-container {
                 display: block;
-                padding: 0 20px;
+                padding: 0 50px; /* Reduced padding for smaller screens */
             }
             
             .features-carousel-track,
             .testimonials-carousel-track {
                 width: 100%;
+                gap: 1.5rem; /* Reduced gap for mobile */
             }
             
-            .feature-card,
-            .testimonial-card {
-                flex: 0 0 calc(100% - 40px);
-                margin: 0 10px;
-                scroll-snap-align: start;
+            /* Carousel card specific styles for mobile */
+            .features-carousel-track .feature-card {
+                flex: 0 0 calc(100% - 30px);
+                min-width: calc(100% - 30px);
+                width: calc(100% - 30px);
+                margin: 0 15px;
+                min-height: 300px; /* Slightly reduced for mobile */
+                padding: 2rem 1.5rem;
+            }
+            
+            .testimonials-carousel-track .testimonial-card {
+                flex: 0 0 calc(100% - 30px);
+                min-width: calc(100% - 30px);
+                width: calc(100% - 30px);
+                margin: 0 15px;
+                min-height: 260px; /* Slightly reduced for mobile */
+                padding: 2rem 1.5rem;
             }
             
             /* Adjust arrow buttons for smaller screens */
@@ -889,6 +939,47 @@
             
             .carousel-nav-btn.next {
                 right: 5px;
+            }
+            
+            /* Adjust card content for mobile */
+            .feature-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1.2rem;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .feature-card p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            .testimonial-text {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            .testimonial-text:before {
+                font-size: 4rem;
+                top: -25px;
+            }
+            
+            .author-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                margin-right: 1rem;
+            }
+            
+            .author-info h4 {
+                font-size: 1.1rem;
+            }
+            
+            .author-info p {
+                font-size: 0.85rem;
             }
         }
 
@@ -911,6 +1002,15 @@
             .mobile-nav {
                 display: none; /* Ocultar navegação mobile no desktop */
             }
+            
+            /* Reset carousel card styles for desktop */
+            .features-carousel-track .feature-card,
+            .testimonials-carousel-track .testimonial-card {
+                min-width: auto;
+                width: auto;
+                margin: 0;
+                flex: none;
+            }
         }
 
         /* Correção adicional para telas muito pequenas */
@@ -923,17 +1023,73 @@
                 width: 85%;
             }
             
-            .feature-card,
-            .testimonial-card {
-                min-width: 280px;
-                flex: 0 0 calc(100% - 30px);
-                margin: 0 15px;
+            /* Adjust carousel containers for very small screens */
+            .features-carousel-container,
+            .testimonials-carousel-container {
+                padding: 0 40px;
+            }
+            
+            /* Adjust carousel cards for very small screens */
+            .features-carousel-track .feature-card,
+            .testimonials-carousel-track .testimonial-card {
+                flex: 0 0 calc(100% - 20px);
+                min-width: calc(100% - 20px);
+                width: calc(100% - 20px);
+                margin: 0 10px;
+                min-height: 280px;
+                padding: 1.8rem 1.2rem;
+            }
+            
+            .testimonials-carousel-track .testimonial-card {
+                min-height: 240px;
+            }
+            
+            .features-carousel-track,
+            .testimonials-carousel-track {
+                gap: 1rem; /* Even smaller gap for very small screens */
             }
             
             .carousel-nav-btn {
                 width: 35px;
                 height: 35px;
                 font-size: 0.9rem;
+            }
+            
+            .carousel-nav-btn.prev {
+                left: 0;
+            }
+            
+            .carousel-nav-btn.next {
+                right: 0;
+            }
+            
+            /* Adjust content for very small screens */
+            .feature-icon {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .feature-card p {
+                font-size: 0.9rem;
+            }
+            
+            .testimonial-text {
+                font-size: 0.9rem;
+            }
+            
+            .testimonial-text:before {
+                font-size: 3.5rem;
+                top: -20px;
+            }
+            
+            .author-avatar {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -1346,7 +1502,8 @@
                 <div class="footer-column">
                     <h3>Contato</h3>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> Email: claradigital.app@gmail.com</li>
+                        <li><i class="fas fa-envelope"></i> Email: contato@planovidacatolico.com</li>
+                        <li><i class="fas fa-phone"></i> WhatsApp: (11) 99999-9999</li>
                     </ul>
                 </div>
             </div>
@@ -1429,17 +1586,15 @@
             document.getElementById('santos-select').style.display = show ? 'block' : 'none';
         });
         
-        // Carousel functionality
+        // Carousel functionality - Improved for better centering
         class Carousel {
-            constructor(containerId, trackId, prevBtnId, nextBtnId, cardWidth = 320) {
+            constructor(containerId, trackId, prevBtnId, nextBtnId) {
                 this.container = document.getElementById(containerId);
                 this.track = document.getElementById(trackId);
                 this.prevBtn = document.getElementById(prevBtnId);
                 this.nextBtn = document.getElementById(nextBtnId);
                 this.cards = Array.from(this.track.children);
                 this.currentIndex = 0;
-                this.cardWidth = cardWidth;
-                this.gap = 40; // Gap between cards
                 
                 this.init();
             }
@@ -1454,11 +1609,45 @@
                 
                 // Add touch/swipe support for mobile
                 this.addTouchSupport();
+                
+                // Update on resize
+                window.addEventListener('resize', () => {
+                    this.updateCarousel();
+                });
+                
+                // Initial centering
+                setTimeout(() => {
+                    this.centerCurrentCard();
+                }, 100);
+            }
+            
+            getCardWidth() {
+                if (this.cards.length === 0) return 0;
+                
+                const card = this.cards[0];
+                const cardStyle = window.getComputedStyle(card);
+                
+                // Get the full width including margin
+                return card.offsetWidth + 
+                       parseInt(cardStyle.marginLeft) + 
+                       parseInt(cardStyle.marginRight);
+            }
+            
+            centerCurrentCard() {
+                const containerWidth = this.container.offsetWidth;
+                const cardWidth = this.getCardWidth();
+                
+                if (containerWidth === 0 || cardWidth === 0) return;
+                
+                // Calculate the scroll position to center the current card
+                const scrollPosition = (this.currentIndex * cardWidth) - 
+                                     ((containerWidth - cardWidth) / 2);
+                
+                this.track.style.transform = `translateX(-${scrollPosition}px)`;
             }
             
             updateCarousel() {
-                const translateX = -this.currentIndex * (this.cardWidth + this.gap);
-                this.track.style.transform = `translateX(${translateX}px)`;
+                this.centerCurrentCard();
             }
             
             prev() {
@@ -1488,15 +1677,33 @@
                     startX = e.touches[0].clientX;
                     currentX = startX;
                     isDragging = true;
+                    this.track.style.transition = 'none'; // Disable transition during drag
                 });
                 
                 this.track.addEventListener('touchmove', (e) => {
                     if (!isDragging) return;
                     currentX = e.touches[0].clientX;
+                    
+                    // Calculate drag distance
+                    const dragDistance = startX - currentX;
+                    
+                    // Get current transform
+                    const currentTransform = this.track.style.transform;
+                    const currentTranslateX = currentTransform ? 
+                        parseInt(currentTransform.match(/translateX\(([^)]+)\)/)[1]) : 0;
+                    
+                    // Apply drag to transform
+                    this.track.style.transform = `translateX(${currentTranslateX - dragDistance}px)`;
+                    
+                    // Update start position for next move
+                    startX = currentX;
                 });
                 
                 this.track.addEventListener('touchend', () => {
                     if (!isDragging) return;
+                    
+                    // Re-enable transition
+                    this.track.style.transition = 'transform 0.5s ease-in-out';
                     
                     const diffX = startX - currentX;
                     
@@ -1509,6 +1716,9 @@
                             // Swipe right - go to previous
                             this.prev();
                         }
+                    } else {
+                        // If swipe wasn't significant, return to current position
+                        this.updateCarousel();
                     }
                     
                     isDragging = false;
@@ -1520,14 +1730,13 @@
         function initCarouselsOnMobile() {
             const isMobile = window.innerWidth <= 768;
             
-            if (isMobile) {
+            if (isMobile && !window.carouselsInitialized) {
                 // Initialize Features Carousel
                 new Carousel(
                     'features-carousel-track',
                     'features-carousel-track',
                     'features-prev',
-                    'features-next',
-                    300
+                    'features-next'
                 );
                 
                 // Initialize Testimonials Carousel
@@ -1535,15 +1744,31 @@
                     'testimonials-carousel-track',
                     'testimonials-carousel-track',
                     'testimonials-prev',
-                    'testimonials-next',
-                    320
+                    'testimonials-next'
                 );
+                
+                window.carouselsInitialized = true;
             }
         }
         
-        // Initialize carousels on load and resize
+        // Initialize carousels on load
         document.addEventListener('DOMContentLoaded', initCarouselsOnMobile);
-        window.addEventListener('resize', initCarouselsOnMobile);
+        
+        // Reinitialize on resize (but only if switching to mobile)
+        let previousWidth = window.innerWidth;
+        window.addEventListener('resize', () => {
+            const currentWidth = window.innerWidth;
+            const isNowMobile = currentWidth <= 768;
+            const wasMobile = previousWidth <= 768;
+            
+            // Only reinitialize if switching between mobile and desktop
+            if ((isNowMobile && !wasMobile) || (!isNowMobile && wasMobile)) {
+                window.carouselsInitialized = false;
+                initCarouselsOnMobile();
+            }
+            
+            previousWidth = currentWidth;
+        });
         
         // Form submission
         document.getElementById('signup-form').addEventListener('submit', async function(e) {
