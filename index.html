@@ -1587,16 +1587,18 @@
         
         // Carousel functionality - Improved for better centering
         class Carousel {
-            constructor(containerId, trackId, prevBtnId, nextBtnId) {
-                this.container = document.getElementById(containerId);
-                this.track = document.getElementById(trackId);
-                this.prevBtn = document.getElementById(prevBtnId);
-                this.nextBtn = document.getElementById(nextBtnId);
-                this.cards = Array.from(this.track.children);
-                this.currentIndex = 0;
-                
-                this.init();
-            }
+			constructor(trackId, prevBtnId, nextBtnId) {
+				this.track = document.getElementById(trackId);
+				this.prevBtn = document.getElementById(prevBtnId);
+				this.nextBtn = document.getElementById(nextBtnId);
+				this.cards = Array.from(this.track.children);
+				this.currentIndex = 0;
+				
+				// Get the container from the track's parent
+				this.container = this.track.parentElement;
+				
+				this.init();
+			}
             
             init() {
                 // Set up event listeners
@@ -1733,14 +1735,12 @@
                 // Initialize Features Carousel
                 new Carousel(
                     'features-carousel-track',
-                    'features-carousel-track',
                     'features-prev',
                     'features-next'
                 );
                 
                 // Initialize Testimonials Carousel
                 new Carousel(
-                    'testimonials-carousel-track',
                     'testimonials-carousel-track',
                     'testimonials-prev',
                     'testimonials-next'
