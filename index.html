@@ -1586,142 +1586,144 @@
         });
         
         // Carousel functionality - Improved for better centering
-       class Carousel {
-    constructor(trackId, prevBtnId, nextBtnId) {
-        this.track = document.getElementById(trackId);
-        this.prevBtn = document.getElementById(prevBtnId);
-        this.nextBtn = document.getElementById(nextBtnId);
-        this.cards = Array.from(this.track.children);
-        this.currentIndex = 0;
-        
-        // Get the container from the track's parent
-        this.container = this.track.parentElement;
-        
-        this.init();
-    }
-    
-    init() {
-        // Set up event listeners
-        this.prevBtn.addEventListener('click', () => this.prev());
-        this.nextBtn.addEventListener('click', () => this.next());
-        
-        // Update initial position
-        this.updateCarousel();
-        
-        // Add touch/swipe support for mobile
-        this.addTouchSupport();
-        
-        // Update on resize
-        window.addEventListener('resize', () => {
-            this.updateCarousel();
-        });
-        
-        // Initial centering
-        setTimeout(() => {
-            this.centerCurrentCard();
-        }, 100);
-    }
-    
-    getCardWidth() {
-        if (this.cards.length === 0) return 0;
-        
-        const card = this.cards[0];
-        const cardStyle = window.getComputedStyle(card);
-        
-        // Get the full width including margin
-        return card.offsetWidth + 
-               parseInt(cardStyle.marginLeft) + 
-               parseInt(cardStyle.marginRight);
-    }
-    
-    centerCurrentCard() {
-        const containerWidth = this.container.offsetWidth;
-        const cardWidth = this.getCardWidth();
-        
-        if (containerWidth === 0 || cardWidth === 0) return;
-        
-        // Calculate the scroll position to center the current card
-        const scrollPosition = (this.currentIndex * cardWidth);
-        
-        this.track.style.transform = `translateX(-${scrollPosition}px)`;
-    }
-    
-    updateCarousel() {
-        this.centerCurrentCard();
-    }
-    
-    prev() {
-        if (this.currentIndex > 0) {
-            this.currentIndex--;
-        } else {
-            this.currentIndex = this.cards.length - 1; // Loop to last
-        }
-        this.updateCarousel();
-    }
-    
-    next() {
-        if (this.currentIndex < this.cards.length - 1) {
-            this.currentIndex++;
-        } else {
-            this.currentIndex = 0; // Loop to first
-        }
-        this.updateCarousel();
-    }
-    
-    addTouchSupport() {
-        let startX = 0;
-        let endX = 0;
-        let isDragging = false;
-        const swipeThreshold = 10; // Minimum swipe distance to trigger
-        
-        this.track.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-            this.track.style.transition = 'none';
-        });
-        
-        this.track.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
+        class Carousel {
+            constructor(containerId, trackId, prevBtnId, nextBtnId) {
+                this.container = document.getElementById(containerId);
+                this.track = document.getElementById(trackId);
+                this.prevBtn = document.getElementById(prevBtnId);
+                this.nextBtn = document.getElementById(nextBtnId);
+                this.cards = Array.from(this.track.children);
+                this.currentIndex = 0;
+                
+                this.init();
+            }
             
-            const currentX = e.touches[0].clientX;
-            const diff = startX - currentX;
+            init() {
+                // Set up event listeners
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+                
+                // Update initial position
+                this.updateCarousel();
+                
+                // Add touch/swipe support for mobile
+                this.addTouchSupport();
+                
+                // Update on resize
+                window.addEventListener('resize', () => {
+                    this.updateCarousel();
+                });
+                
+                // Initial centering
+                setTimeout(() => {
+                    this.centerCurrentCard();
+                }, 100);
+            }
             
-            // Apply drag movement
-            const currentTransform = this.track.style.transform;
-            const currentTranslateX = currentTransform ? 
-                parseInt(currentTransform.match(/translateX\(-?([^)]+)\)/)?.[1]) || 0 : 0;
+            getCardWidth() {
+                if (this.cards.length === 0) return 0;
+                
+                const card = this.cards[0];
+                const cardStyle = window.getComputedStyle(card);
+                
+                // Get the full width including margin
+                return card.offsetWidth + 
+                       parseInt(cardStyle.marginLeft) + 
+                       parseInt(cardStyle.marginRight);
+            }
             
-            this.track.style.transform = `translateX(-${currentTranslateX + diff}px)`;
+            centerCurrentCard() {
+                const containerWidth = this.container.offsetWidth;
+                const cardWidth = this.getCardWidth();
+                
+                if (containerWidth === 0 || cardWidth === 0) return;
+                
+                // Calculate the scroll position to center the current card
+                const scrollPosition = (this.currentIndex * cardWidth) - 
+                                     ((containerWidth - cardWidth) / 2);
+                
+                this.track.style.transform = `translateX(-${scrollPosition}px)`;
+            }
             
-            startX = currentX;
-        });
-        
-        this.track.addEventListener('touchend', (e) => {
-            if (!isDragging) return;
+            updateCarousel() {
+                this.centerCurrentCard();
+            }
             
-            isDragging = false;
-            this.track.style.transition = 'transform 0.5s ease-in-out';
-            
-            endX = e.changedTouches[0].clientX;
-            const diffX = startX - endX;
-            
-            // Determine swipe direction
-            if (Math.abs(diffX) > swipeThreshold) {
-                if (diffX > 0) {
-                    // Swipe left - go to next
-                    this.next();
+            prev() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
                 } else {
-                    // Swipe right - go to previous
-                    this.prev();
+                    this.currentIndex = this.cards.length - 1; // Loop to last
                 }
-            } else {
-                // Return to current position if swipe wasn't significant
                 this.updateCarousel();
             }
-        });
-    }
-}
+            
+            next() {
+                if (this.currentIndex < this.cards.length - 1) {
+                    this.currentIndex++;
+                } else {
+                    this.currentIndex = 0; // Loop to first
+                }
+                this.updateCarousel();
+            }
+            
+            addTouchSupport() {
+                let startX = 0;
+                let currentX = 0;
+                let isDragging = false;
+                
+                this.track.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    currentX = startX;
+                    isDragging = true;
+                    this.track.style.transition = 'none'; // Disable transition during drag
+                });
+                
+                this.track.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    currentX = e.touches[0].clientX;
+                    
+                    // Calculate drag distance
+                    const dragDistance = startX - currentX;
+                    
+                    // Get current transform
+                    const currentTransform = this.track.style.transform;
+                    const currentTranslateX = currentTransform ? 
+                        parseInt(currentTransform.match(/translateX\(([^)]+)\)/)[1]) : 0;
+                    
+                    // Apply drag to transform
+                    this.track.style.transform = `translateX(${currentTranslateX - dragDistance}px)`;
+                    
+                    // Update start position for next move
+                    startX = currentX;
+                });
+                
+                this.track.addEventListener('touchend', () => {
+                    if (!isDragging) return;
+                    
+                    // Re-enable transition
+                    this.track.style.transition = 'transform 0.5s ease-in-out';
+                    
+                    const diffX = startX - currentX;
+                    
+                    // If swipe distance is significant enough
+                    if (Math.abs(diffX) > 0) {
+                        if (diffX > 0) {
+                            // Swipe left - go to next
+                            this.next();
+                        } else {
+                            // Swipe right - go to previous
+                            this.prev();
+                        }
+                    } else {
+                        // If swipe wasn't significant, return to current position
+                        this.updateCarousel();
+                    }
+                    
+                    isDragging = false;
+                });
+            }
+        }
         
         // Initialize carousels on mobile only
         function initCarouselsOnMobile() {
@@ -1731,12 +1733,14 @@
                 // Initialize Features Carousel
                 new Carousel(
                     'features-carousel-track',
+                    'features-carousel-track',
                     'features-prev',
                     'features-next'
                 );
                 
                 // Initialize Testimonials Carousel
                 new Carousel(
+                    'testimonials-carousel-track',
                     'testimonials-carousel-track',
                     'testimonials-prev',
                     'testimonials-next'
