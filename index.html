@@ -323,6 +323,7 @@
         .features {
             padding: 6rem 0;
             background: var(--section-gradient);
+            overflow: hidden;
         }
         
         .section-title {
@@ -361,6 +362,7 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            min-width: 300px;
         }
         
         .feature-card:before {
@@ -395,6 +397,69 @@
         
         .feature-card p {
             color: var(--gray);
+        }
+        
+        /* Features Carousel */
+        .features-carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .features-carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 2.5rem;
+            padding: 10px 0;
+        }
+        
+        .carousel-nav {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+        
+        .carousel-nav button {
+            background: var(--gold-gradient);
+            border: none;
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .carousel-nav button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .carousel-dots {
+            display: flex;
+            gap: 10px;
+            margin: 0 20px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gray-dark);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .carousel-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
         }
         
         /* How It Works */
@@ -457,6 +522,7 @@
         .testimonials {
             padding: 6rem 0;
             background: var(--section-gradient);
+            overflow: hidden;
         }
         
         .testimonials-grid {
@@ -472,6 +538,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(212, 175, 55, 0.1);
             transition: all 0.3s;
+            min-width: 320px;
         }
         
         .testimonial-card:hover {
@@ -524,6 +591,20 @@
         .author-info p {
             color: var(--gray);
             font-size: 0.9rem;
+        }
+        
+        /* Testimonials Carousel */
+        .testimonials-carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .testimonials-carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 2.5rem;
+            padding: 10px 0;
         }
         
         /* CTA Section */
@@ -780,14 +861,58 @@
 			.mobile-nav:not(.active) {
 				display: none;
 			}
+            
+            /* Carousel styles for mobile */
+            .features-grid {
+                display: none;
+            }
+            
+            .testimonials-grid {
+                display: none;
+            }
+            
+            .features-carousel-container,
+            .testimonials-carousel-container {
+                display: block;
+            }
+            
+            .carousel-nav {
+                display: flex;
+            }
+            
+            .features-carousel-track,
+            .testimonials-carousel-track {
+                width: 100%;
+            }
+            
+            .feature-card,
+            .testimonial-card {
+                flex: 0 0 calc(100% - 40px);
+                margin: 0 20px;
+                scroll-snap-align: start;
+            }
         }
 
-		/* Ocultar navegação mobile no desktop */
-		@media (min-width: 769px) {
-			.mobile-nav {
-				display: none; /* Ocultar navegação mobile no desktop */
-			}
-		}
+        /* Desktop styles - show grid, hide carousel */
+        @media (min-width: 769px) {
+            .features-grid {
+                display: grid;
+            }
+            
+            .testimonials-grid {
+                display: grid;
+            }
+            
+            .features-carousel-container,
+            .testimonials-carousel-container,
+            .carousel-nav {
+                display: none;
+            }
+            
+            .mobile-nav {
+                display: none; /* Ocultar navegação mobile no desktop */
+            }
+        }
 
         /* Correção adicional para telas muito pequenas */
         @media (max-width: 480px) {
@@ -797,6 +922,13 @@
             
             .mobile-nav {
                 width: 85%;
+            }
+            
+            .feature-card,
+            .testimonial-card {
+                min-width: 280px;
+                flex: 0 0 calc(100% - 30px);
+                margin: 0 15px;
             }
         }
     </style>
@@ -860,6 +992,8 @@
                 <h2>Como o Plano de Vida Católico Funciona</h2>
                 <p>Personalize seus lembretes de oração de acordo com sua rotina e devoções pessoais</p>
             </div>
+            
+            <!-- Desktop Grid -->
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-clock"></i></div>
@@ -875,6 +1009,41 @@
                     <div class="feature-icon"><i class="fas fa-pray"></i></div>
                     <h3>Variedade de Orações</h3>
                     <p>Terço, Angelus, orações para dormir e devoções aos santos - personalize conforme sua espiritualidade.</p>
+                </div>
+            </div>
+            
+            <!-- Mobile Carousel -->
+            <div class="features-carousel-container">
+                <div class="features-carousel-track" id="features-carousel-track">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                        <h3>Lembretes Personalizados</h3>
+                        <p>Escolha os horários que melhor se adequam à sua rotina para receber os lembretes de oração.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3>Múltiplos Canais</h3>
+                        <p>Receba as mensagens por WhatsApp ou Email, conforme sua preferência.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-pray"></i></div>
+                        <h3>Variedade de Orações</h3>
+                        <p>Terço, Angelus, orações para dormir e devoções aos santos - personalize conforme sua espiritualidade.</p>
+                    </div>
+                </div>
+                
+                <div class="carousel-nav">
+                    <button class="carousel-prev" id="features-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-dots" id="features-dots">
+                        <button class="carousel-dot active" data-index="0"></button>
+                        <button class="carousel-dot" data-index="1"></button>
+                        <button class="carousel-dot" data-index="2"></button>
+                    </div>
+                    <button class="carousel-next" id="features-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -914,6 +1083,8 @@
                 <h2>O Que Nossos Usuários Dizem</h2>
                 <p>Depoimentos de católicos que transformaram sua vida de oração</p>
             </div>
+            
+            <!-- Desktop Grid -->
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
@@ -950,6 +1121,62 @@
                             <p>Assinante há 8 meses</p>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Carousel -->
+            <div class="testimonials-carousel-container">
+                <div class="testimonials-carousel-track" id="testimonials-carousel-track">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <p>O Plano de Vida Católico mudou minha rotina espiritual. Antes eu esquecia de rezar o terço com frequência, agora recebo o lembrete no horário que escolhi e minha constância na oração aumentou muito.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fas fa-user"></i></div>
+                            <div class="author-info">
+                                <h4>Maria Silva</h4>
+                                <p>Assinante há 6 meses</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <p>Como mãe de família, é difícil encontrar tempo para a oração. Com os lembretes personalizados, consigo manter minha vida espiritual ativa mesmo nos dias mais corridos.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fas fa-user"></i></div>
+                            <div class="author-info">
+                                <h4>Ana Oliveira</h4>
+                                <p>Assinante há 3 meses</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <p>Adorei a possibilidade de escolher os santos que quero venerar. Recebo informações e orações específicas para cada um, o que enriqueceu muito minha devoção.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fas fa-user"></i></div>
+                            <div class="author-info">
+                                <h4>Carlos Santos</h4>
+                                <p>Assinante há 8 meses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-nav">
+                    <button class="carousel-prev" id="testimonials-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-dots" id="testimonials-dots">
+                        <button class="carousel-dot active" data-index="0"></button>
+                        <button class="carousel-dot" data-index="1"></button>
+                        <button class="carousel-dot" data-index="2"></button>
+                    </div>
+                    <button class="carousel-next" id="testimonials-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1126,8 +1353,7 @@
                 <div class="footer-column">
                     <h3>Contato</h3>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> Email: contato@planovidacatolico.com</li>
-                        <li><i class="fas fa-phone"></i> WhatsApp: (11) 99999-9999</li>
+                        <li><i class="fas fa-envelope"></i> Email: claradigital.app@gmail.com</li>
                     </ul>
                 </div>
             </div>
@@ -1210,6 +1436,123 @@
             document.getElementById('santos-select').style.display = show ? 'block' : 'none';
         });
         
+        // Carousel functionality
+        class Carousel {
+            constructor(containerId, trackId, dotsId, prevBtnId, nextBtnId, cardWidth = 320) {
+                this.container = document.getElementById(containerId);
+                this.track = document.getElementById(trackId);
+                this.dotsContainer = document.getElementById(dotsId);
+                this.prevBtn = document.getElementById(prevBtnId);
+                this.nextBtn = document.getElementById(nextBtnId);
+                this.cards = Array.from(this.track.children);
+                this.currentIndex = 0;
+                this.cardWidth = cardWidth;
+                this.gap = 40; // Gap between cards
+                
+                this.init();
+            }
+            
+            init() {
+                // Set up dots
+                this.createDots();
+                
+                // Set up event listeners
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+                
+                // Dot click events
+                this.dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                });
+                
+                // Update initial position
+                this.updateCarousel();
+            }
+            
+            createDots() {
+                this.dots = [];
+                for (let i = 0; i < this.cards.length; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'carousel-dot';
+                    dot.dataset.index = i;
+                    dot.addEventListener('click', () => this.goToSlide(i));
+                    this.dotsContainer.appendChild(dot);
+                    this.dots.push(dot);
+                }
+                this.updateDots();
+            }
+            
+            updateCarousel() {
+                const translateX = -this.currentIndex * (this.cardWidth + this.gap);
+                this.track.style.transform = `translateX(${translateX}px)`;
+                this.updateDots();
+            }
+            
+            updateDots() {
+                this.dots.forEach((dot, index) => {
+                    if (index === this.currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            prev() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                } else {
+                    this.currentIndex = this.cards.length - 1; // Loop to last
+                }
+                this.updateCarousel();
+            }
+            
+            next() {
+                if (this.currentIndex < this.cards.length - 1) {
+                    this.currentIndex++;
+                } else {
+                    this.currentIndex = 0; // Loop to first
+                }
+                this.updateCarousel();
+            }
+            
+            goToSlide(index) {
+                this.currentIndex = index;
+                this.updateCarousel();
+            }
+        }
+        
+        // Initialize carousels on mobile only
+        function initCarouselsOnMobile() {
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                // Initialize Features Carousel
+                new Carousel(
+                    'features-carousel-track',
+                    'features-carousel-track',
+                    'features-dots',
+                    'features-prev',
+                    'features-next',
+                    300
+                );
+                
+                // Initialize Testimonials Carousel
+                new Carousel(
+                    'testimonials-carousel-track',
+                    'testimonials-carousel-track',
+                    'testimonials-dots',
+                    'testimonials-prev',
+                    'testimonials-next',
+                    320
+                );
+            }
+        }
+        
+        // Initialize carousels on load and resize
+        document.addEventListener('DOMContentLoaded', initCarouselsOnMobile);
+        window.addEventListener('resize', initCarouselsOnMobile);
+        
         // Form submission
         document.getElementById('signup-form').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -1228,7 +1571,7 @@
                 flg_disparo_santos: document.getElementById('flg_disparo_santos').checked ? 1 : 0,
                 horario_disparo_santos: document.getElementById('horario_disparo_santos').value,
                 vetor_santos: Array.from(document.getElementById('vetor_santos').selectedOptions).map(option => option.value),
-                flg_disparo_email: document.getElementById('flg_disparo_email').checked ? 1 : 0,
+                flg_disparo_email: 1, //document.getElementById('flg_disparo_email').checked ? 1 : 0,
                 flg_disparo_sms: 0,
                 flg_disparo_wpp: document.getElementById('flg_disparo_wpp').checked ? 1 : 0,
                 flg_usuario_ativo: 1,
